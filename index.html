@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Určovanie spotreby a tvorby energie</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+</head>
+<body>
+
+<div id="mainDiv">
+    <div id="header">
+        <a href="http://ooze.fberg.tuke.sk" target="_blank">
+            <img src="img/tukelogo.png">
+        </a>
+
+        <a style="text-decoration:none" href="http://ooze.fberg.tuke.sk" target="_blank">
+            <p class="pageHeaderTitle" style="font-size:23px">TUKE FBERG - OOZE</p>
+        </a>
+        
+        <img class="demoImage" src="img/demo.png">
+        
+    </div>
+    <div id="titleContainer">
+        <p class="pageHeaderTitle">Zistite svoj spotrebný profil</p>
+        <p class="pageHeaderTitle">a porovnajte ho s výrobou elektriny z FV zdroja</p>
+    </div>
+    <div class="tabs">
+        
+        <div class="spacer"></div>
+        <button id="tab1" class="tab active">november - apríl</button>
+        <button id="tab2" class="tab">máj - október</button>
+    </div>
+    <div class="tableButtons">
+        <div class="file-input-container">
+            <button id="addAppliance">Pridať spotrebič</button>
+        </div>
+        <div class="file-input-container">
+            <input type="file" id="xlsxFileInput" accept=".xlsx" style="display: none;" />
+            <button id="customButton">Vyberte súbor</button>
+            <span id="fileChosen">Export z <a href="https://globalsolaratlas.info/map?c=48.361724,19.489746,8" target="_blank">GlobalSolarAtlas</a></span>
+        </div>
+    </div>
+    <div class="contentContainer">
+        <div class="tableContainer">
+            
+            <div id="applianceTableContainer" style="display:table">
+                <table id="applianceTable">
+                    <thead>
+                        <tr>
+                            <th colspan="2"></th> <!-- Empty cell for the first two columns -->
+                            <th colspan="24" class="headerTitle">Využívanie spotrebiča za danú hodinu (0-60 min)<br/> od Novembra do Apríla</th>
+                            <th></th> <!-- Empty cell for the last column -->
+                        </tr>
+                        <tr>
+                            <th>Spotrebič</th>
+                            <th>Príkon (W)</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>Denná spotreba (Wh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Rows for appliances will be added here -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Spotreba spolu (Wh)</td>
+                            <td id="totalHour1"></td>
+                            <td id="totalHour2"></td>
+                            <td id="totalHour3"></td>
+                            <td id="totalHour4"></td>
+                            <td id="totalHour5"></td>
+                            <td id="totalHour6"></td>
+                            <td id="totalHour7"></td>
+                            <td id="totalHour8"></td>
+                            <td id="totalHour9"></td>
+                            <td id="totalHour10"></td>
+                            <td id="totalHour11"></td>
+                            <td id="totalHour12"></td>
+                            <td id="totalHour13"></td>
+                            <td id="totalHour14"></td>
+                            <td id="totalHour15"></td>
+                            <td id="totalHour16"></td>
+                            <td id="totalHour17"></td>
+                            <td id="totalHour18"></td>
+                            <td id="totalHour19"></td>
+                            <td id="totalHour20"></td>
+                            <td id="totalHour21"></td>
+                            <td id="totalHour22"></td>
+                            <td id="totalHour23"></td>
+                            <td id="totalHour24"></td>
+                            <td id="totalConsumption"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div id="applianceTable2Container" style="display: none;">
+                <table id="applianceTable2">
+                    <thead>
+                        <tr>
+                            <th colspan="2"></th> <!-- Empty cell for the first two columns -->
+                            <th colspan="24" class="headerTitle">Využívanie spotrebiča za danú hodinu (0-60 min)<br/> od Mája do Októbra</th>
+                            <th></th> <!-- Empty cell for the last column -->
+                        </tr>
+                        <tr>
+                            <th>Spotrebič</th>
+                            <th>Príkon (W)</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>Denná spotreba (Wh)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Rows for appliances will be added here -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">Spotreba spolu (Wh)</td>
+                            <td id="2totalHour1"></td>
+                            <td id="2totalHour2"></td>
+                            <td id="2totalHour3"></td>
+                            <td id="2totalHour4"></td>
+                            <td id="2totalHour5"></td>
+                            <td id="2totalHour6"></td>
+                            <td id="2totalHour7"></td>
+                            <td id="2totalHour8"></td>
+                            <td id="2totalHour9"></td>
+                            <td id="2totalHour10"></td>
+                            <td id="2totalHour11"></td>
+                            <td id="2totalHour12"></td>
+                            <td id="2totalHour13"></td>
+                            <td id="2totalHour14"></td>
+                            <td id="2totalHour15"></td>
+                            <td id="2totalHour16"></td>
+                            <td id="2totalHour17"></td>
+                            <td id="2totalHour18"></td>
+                            <td id="2totalHour19"></td>
+                            <td id="2totalHour20"></td>
+                            <td id="2totalHour21"></td>
+                            <td id="2totalHour22"></td>
+                            <td id="2totalHour23"></td>
+                            <td id="2totalHour24"></td>
+                            <td id="2totalConsumption"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="graphContainer">
+            <p class="costs"></p>
+            <div id="chartContainer1" class="chartContainer chartjs-tooltip-container">
+                <!-- The first chart for November - April consumption will be appended here -->
+            </div>
+            <div id="chartContainer2" class="chartContainer chartjs-tooltip-container">
+                <!-- The second chart for May - October consumption will be appended here -->
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+<div id="demoContent">
+    <p class="demoContentTitle">Ako používať nástroj?</p>
+    <div class="demoRow">
+        <div class="demoText">
+    
+            <p class="demoContentSubtitle">Zistenie vlastnej spotreby</p>
+            <p class="demoContentText">Do tabuľky použitím tlačidla <b>"Pridať spotrebič"</b> pridajte postupne všetky elektrické spotrebiče vo Vašej domácnosti</p>
+            <p class="demoContentText">V druhom stĺpci tabuľky zadajte <b>štítkový príkon</b> pre každý spotrebič  </p>
+            <p class="demoContentText">Do ďalších stĺpcov zadajte počet minút <b>0-60</b>, ktoré v danej hodine spotrebič používate, pre obidve obdobia osobitne (leto / zima)</p>
+            <p class="demoContentText">Graf vykreslí krivku spotreby domácnosti na grafoch  </p>
+        </div>
+
+        <img class="demoImages" src="img/appliances.png">
+    </div>
+    <div class="demoRow">
+        <img class="demoImages" src="img/gsa1.png">
+   
+        <div class="demoText">
+    
+            <p class="demoContentSubtitle">Získanie vhodného výkonu solárneho systému pre domácnosť</p>
+            <p class="demoContentText">Navštívte stránku <b><a href="https://globalsolaratlas.info/map?c=48.361724,19.489746,8" target="_blank">GlobalSolarAtlas</a></b> a vyberte polohu plánovanej inštalácie</p>
+            <p class="demoContentText">V <b>pravom paneli</b> vyberte typ inštalácie (small residential pre domy)</p>
+            <p class="demoContentText">Parametre systému prípadne upravte pomocou <b>"Change PV system"</b> alebo s predvolenými nastaveniami vytvorte <b>report</b> v XLSX formáte</p>
+            <p class="demoContentText">Tento súbor nahrajte pod tabuľkou spotreby a graf vykreslí krivku tvorby na grafoch  </p>
+            <p class="demoContentText">Proces je opakovateľný a nahradí porovnávaný systém v grafoch po jeho úprave a opätovnom stiahnutí</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>Autori:</p>
+    <p>Marián Cibulka</p>
+    <p>prof. Ing. Peter Tauš, PhD.</p>
+</footer>
+
+<script src="main.js"></script>
+</body

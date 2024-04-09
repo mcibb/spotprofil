@@ -1,0 +1,384 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color:#e9e8e8;
+  background-image: url("img/bg.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  
+  
+}
+
+
+.pageHeaderTitle {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style:normal;
+  font-size: 30px;
+  word-break: break-all;
+  line-break:strict ;
+  letter-spacing: 1px;
+  font-variation-settings:
+    "wdth" 100;
+  background-color:#e9e8e800;
+  
+}
+
+
+.demoContentTitle {
+  font-family: "Open Sans", sans-serif;
+  text-align: left;
+  margin-left: 4%;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style:normal;
+  font-size: 30px;
+
+  letter-spacing: 1px;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: aliceblue;
+}
+
+.demoContentSubtitle {
+  font-family: "Open Sans", sans-serif;
+  text-align: left;
+  margin-left: 4%;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style:normal;
+  font-size: 25px;
+
+  letter-spacing: 1px;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: aliceblue;
+}
+.demoContentText {
+  font-family: "Open Sans", sans-serif;
+  text-align: left;
+  margin-left: 5%;
+  margin-top:0px;
+  margin-bottom: 2%;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style:normal;
+  font-size: 16px;
+
+  letter-spacing: 1px;
+  font-variation-settings:
+    "wdth" 100;
+  background-color: aliceblue;
+}
+
+.demoText {
+  display: flex;
+  flex-direction: column;
+  
+  max-width:50%
+}
+
+.demoRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width:100%;
+  background-color: aliceblue;
+
+}
+#demoContent {
+  display: none; /* Keep hidden by default */
+  position: fixed; /* Continue using fixed positioning */
+  background-color: aliceblue;
+  max-width: 50vw; /* Set the maximum width */
+  height: 90vh;
+  flex-direction: column; /* Arrange children in a row */
+  /* Ensure other necessary styling is included, e.g., alignment, padding */
+  opacity: 0; /* Start fully transparent */
+  visibility: hidden; /* Make it not visible */
+  transition: opacity 0.5s, visibility 0.5s;
+  overflow: auto;
+  border-radius: 20px;
+  z-index: 10;
+}
+a:visited{
+  color:rgb(0, 0, 0);
+  background-color:rgb(248, 248, 248)
+}
+
+.headerTitle {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-style:normal;
+  font-size: 20px;
+  letter-spacing: 1px;
+  font-variation-settings:
+    "wdth" 100;
+  background-color:rgb(248, 248, 248)
+}
+
+.tabs {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: left;
+}
+
+.tableContainer table {
+  max-width: 60%;
+  width: 60%;
+  margin: 0 auto; /* Center the table */
+  font-size: 14px;
+}
+
+.demoImages {
+  width:50%;
+  height:auto;
+  object-fit: contain;
+
+}
+
+.demoImage {
+  position:fixed;
+  right: 5%;
+}
+.spacer {
+  width:35%;
+}
+
+.demoSpacer {
+  width:10%;
+}
+
+#header {
+  display: flex;
+  flex-direction: row;
+ 
+  align-items:center;
+  width: 100vw;
+  height: 5vh;
+  margin-bottom: 1%;
+  margin-left: 2vw;
+}
+
+#header img {
+  
+  max-height:5vh;
+  
+}
+.tab {
+  background-color: #ddd;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tab.active {
+  background-color: #4285F4;
+  color: white;
+}
+
+.tableContainer {
+  margin-top: 20px;
+
+
+  min-width: 200px; 
+}
+
+.tableButtons {
+  display: flex;
+  flex-direction: row;
+ 
+}
+#addAppliance {
+  position:fixed;
+  margin-left: 3%;
+  margin-right:50%;
+}
+
+.file-input-container {
+  display:flex;
+  padding-left:0%;
+  margin-top:2%;
+}
+
+#customButton {
+  margin-left:60vw;
+}
+#customButton, #addAppliance {
+  background-color: #4285F4;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#customButton:hover, #addAppliance:hover {
+  background-color: #ddd;
+
+}
+
+#applianceTableContainer {
+  margin-top: 2%;
+  overflow-x:unset;
+}
+.topButtonsContainer {
+
+  display: flex;
+  flex-direction: row;
+}
+
+.highlighted-row {
+  background-color: #ffff99; /* Light yellow background */
+  transition: background-color 0.3s ease-in;
+}
+
+/* Keyframes for fade-out animation */
+@keyframes fadeOutHighlight {
+  from {
+      background-color: #ffff99;
+  }
+  to {
+      background-color: #f8f8f8;; 
+  }
+}
+
+/* Class to apply the fade-out animation */
+.fade-out-highlight {
+  animation: fadeOutHighlight 1s ease-out forwards;
+  
+}
+
+.contentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+table {
+  border-collapse: collapse;
+  width: 95%;
+  margin: 0 auto 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  
+}
+
+th {
+  background-color: #f8f8f8;
+}
+
+tr {
+  background-color: #f5f5f5;
+}
+
+
+
+.graphContainer {
+  flex-grow: 1;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  margin-top: 20px;
+  
+}
+
+.chartContainer {
+  width: 90%;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+.chartjs-tooltip-container .custom-tooltip {
+  width: 100%;
+  padding: 10px;
+  border-collapse: collapse;
+  font-family: sans-serif;
+}
+
+.chartjs-tooltip-container .custom-tooltip td {
+  vertical-align: middle;
+}
+
+.chartjs-tooltip-container .custom-tooltip th,
+.chartjs-tooltip-container .custom-tooltip td {
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.chartjs-tooltip-container .custom-tooltip th {
+  text-align: left;
+  font-weight: 600;
+}
+
+#mainDiv {
+
+  height:100vh;
+  width: 100vw;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .graphContainer {
+      flex-direction: column;
+      align-items: center;
+      width: 90vw;
+  }
+
+  .chartContainer {
+      width: 90%;
+      margin-bottom: 20px;
+  }
+  
+  .demmoImage {
+    
+    right : 70%;
+  }
+
+  .demoImages {
+    display: none;
+  }
+  .demoSpacer {
+    display: none;
+  }
+  
+}
+
+@media (max-width: 1450px) {
+  #demoContent .demoRow:last-child {
+    flex-direction: column-reverse; /* Stack children vertically in the last row */
+
+  }
+
+  #demoContent .demoRow:last-child .demoText,
+  #demoContent .demoRow:last-child .demoImages {
+    min-width: 100%; /* Make them take full width of the container in the last row */
+    max-width: 100%;
+  }
+
+  .contentContainer {
+    flex-direction:column;
+   
+  }
+
+  .graphContainer {
+    max-width: 65vw;
+  }
+}
+
+
